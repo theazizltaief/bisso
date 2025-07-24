@@ -1,0 +1,13 @@
+<h1>Liste des Marques</h1>
+
+<%= link_to "Ajouter une marque", new_admin_panel_brand_path %>
+
+<ul>
+  <% @brands.each do |brand| %>
+    <li>
+      <strong><%= brand.name %></strong>
+      <%= link_to "Modifier", edit_admin_panel_brand_path(brand) %> |
+      <%= link_to "Supprimer", admin_panel_brand_path(brand), method: :delete, data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette marque ?" }, class: "btn btn-danger" %>
+    </li>
+  <% end %>
+</ul>

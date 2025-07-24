@@ -1,0 +1,27 @@
+<h1>Nouvelle Marque</h1>
+
+<% if @brand.errors.any? %>
+  <div class="alert alert-danger">
+    <h2><%= pluralize(@brand.errors.count, "erreur") %> empêchent la création de cette marque :</h2>
+    <ul>
+      <% @brand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin_panel, @brand], local: true do |f| %>
+  <%= hidden_field_tag :redirect_to, @redirect_to if @redirect_to.present? %>
+
+  <div>
+    <%= f.label :name, "Nom de la marque" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit "Créer la marque" %>
+  </div>
+<% end %>
+
+<%= link_to "Retour", @redirect_to || admin_panel_brands_path %>

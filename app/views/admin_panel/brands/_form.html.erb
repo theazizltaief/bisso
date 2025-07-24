@@ -1,0 +1,19 @@
+<%= form_with model: [:admin_panel, brand], local: true do |f| %>
+  <div>
+    <%= f.label :name, "Nom de la marque" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+  <% if Brand.exists? %>
+    <p>Nombre de marques disponibles : <%= Brand.count %></p>
+  <% end %>
+
+  <p>
+    Vous ne trouvez pas votre marque ?
+    <%= link_to "Ajouter une nouvelle marque", new_admin_panel_brand_path(redirect_to: request.fullpath) %>
+  </p>
+<% end %>

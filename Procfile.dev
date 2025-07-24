@@ -1,0 +1,2 @@
+web: env RUBY_DEBUG_OPEN=true bin/rails server
+css: ./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch
