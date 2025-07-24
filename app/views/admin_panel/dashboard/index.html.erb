@@ -1,6 +1,205 @@
-<h1>Bienvenue sur l'espace admin</h1>
-<body class="bg-gray-100 text-gray-800 font-sans antialiased">
+<% content_for :page_title, "Tableau de bord" %>
 
-<p><%= link_to "Gérer les parfums", admin_panel_parfums_path %></p>
-<p><%= link_to "Gérer les marques", admin_panel_brands_path %></p>
+<div class="container-fluid">
+  <!-- Welcome Section -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card-luxury p-5 text-center">
+        <div class="mb-4">
+          <i class="fas fa-crown text-warning fs-1 mb-3"></i>
+          <h1 class="display-5 fw-bold mb-3" style="color: var(--primary-dark); font-family: 'Playfair Display', serif;">
+            Bienvenue dans votre espace admin
+          </h1>
+          <p class="lead text-muted">
+            Gérez votre collection de parfums de luxe avec élégance et simplicité
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Management Sections -->
+  <div class="row g-4 mb-5">
+    <!-- Parfums Management -->
+    <div class="col-lg-6">
+      <div class="card-luxury h-100 overflow-hidden position-relative">
+        <div class="position-absolute top-0 end-0 opacity-25" style="font-size: 120px; color: var(--primary-gold);">
+          <i class="fas fa-spray-can"></i>
+        </div>
+        <div class="p-4 position-relative" style="z-index: 2;">
+          <div class="d-flex align-items-center mb-4">
+            <div class="rounded-circle d-flex align-items-center justify-content-center me-3" 
+                 style="width: 60px; height: 60px; background: var(--bg-luxury);">
+              <i class="fas fa-spray-can text-white fs-4"></i>
+            </div>
+            <div>
+              <h3 class="h4 mb-1 fw-bold" style="color: var(--primary-dark);">Gérer les parfums</h3>
+              <p class="text-muted mb-0">Collection designer & niche</p>
+            </div>
+          </div>
+          
+          <p class="text-muted mb-4">
+            Ajoutez, modifiez ou supprimez vos parfums de luxe. Gérez les descriptions, 
+            prix, stocks et images de votre collection exclusive.
+          </p>
+          
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <div class="text-center p-3 rounded-3" style="background: rgba(116, 75, 162, 0.1);">
+                <h5 class="mb-1" style="color: var(--primary-dark);">124</h5>
+                <small class="text-muted">Produits</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-center p-3 rounded-3" style="background: rgba(212, 175, 55, 0.1);">
+                <h5 class="mb-1" style="color: var(--primary-dark);">89%</h5>
+                <small class="text-muted">En stock</small>
+              </div>
+            </div>
+          </div>
+          
+          <%= link_to admin_panel_parfums_path, 
+                      class: "btn btn-luxury w-100 d-flex align-items-center justify-content-center" do %>
+            <i class="fas fa-arrow-right me-2"></i>
+            Accéder à la gestion des parfums
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands Management -->
+    <div class="col-lg-6">
+      <div class="card-luxury h-100 overflow-hidden position-relative">
+        <div class="position-absolute top-0 end-0 opacity-25" style="font-size: 120px; color: var(--primary-gold);">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="p-4 position-relative" style="z-index: 2;">
+          <div class="d-flex align-items-center mb-4">
+            <div class="rounded-circle d-flex align-items-center justify-content-center me-3" 
+                 style="width: 60px; height: 60px; background: var(--bg-luxury);">
+              <i class="fas fa-star text-white fs-4"></i>
+            </div>
+            <div>
+              <h3 class="h4 mb-1 fw-bold" style="color: var(--primary-dark);">Gérer les marques</h3>
+              <p class="text-muted mb-0">Créateurs & maisons de luxe</p>
+            </div>
+          </div>
+          
+          <p class="text-muted mb-4">
+            Organisez vos marques de parfums par catégories. Ajoutez des nouvelles maisons 
+            de parfumerie et gérez les informations de chaque créateur.
+          </p>
+          
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <div class="text-center p-3 rounded-3" style="background: rgba(116, 75, 162, 0.1);">
+                <h5 class="mb-1" style="color: var(--primary-dark);">32</h5>
+                <small class="text-muted">Marques</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-center p-3 rounded-3" style="background: rgba(212, 175, 55, 0.1);">
+                <h5 class="mb-1" style="color: var(--primary-dark);">18</h5>
+                <small class="text-muted">Niche</small>
+              </div>
+            </div>
+          </div>
+          
+          <%= link_to admin_panel_brands_path, 
+                      class: "btn btn-luxury w-100 d-flex align-items-center justify-content-center" do %>
+            <i class="fas fa-arrow-right me-2"></i>
+            Accéder à la gestion des marques
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row g-4 mb-5">
+    <div class="col-12">
+      <div class="card-luxury p-4">
+        <h4 class="mb-4 fw-bold" style="color: var(--primary-dark);">
+          <i class="fas fa-bolt me-2" style="color: var(--primary-gold);"></i>
+          Actions rapides
+        </h4>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <a href="/products/new" class="text-decoration-none">
+              <div class="p-3 text-center rounded-3 h-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <i class="fas fa-plus-circle fs-2 mb-2"></i>
+                <h6 class="mb-0">Nouveau produit</h6>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/categories/new" class="text-decoration-none">
+              <div class="p-3 text-center rounded-3 h-100" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                <i class="fas fa-tag fs-2 mb-2"></i>
+                <h6 class="mb-0">Nouvelle catégorie</h6>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/orders" class="text-decoration-none">
+              <div class="p-3 text-center rounded-3 h-100" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                <i class="fas fa-shopping-bag fs-2 mb-2"></i>
+                <h6 class="mb-0">Voir commandes</h6>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/admin_panel" class="text-decoration-none">
+              <div class="p-3 text-center rounded-3 h-100" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
+                <i class="fas fa-chart-line fs-2 mb-2"></i>
+                <h6 class="mb-0">Statistiques</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card-luxury p-4">
+        <h4 class="mb-4 fw-bold" style="color: var(--primary-dark);">
+          <i class="fas fa-clock me-2" style="color: var(--primary-gold);"></i>
+          Activité récente
+        </h4>
+        <div class="list-group list-group-flush">
+          <div class="list-group-item border-0 d-flex align-items-center">
+            <div class="rounded-circle bg-success me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+              <i class="fas fa-plus text-white small"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h6 class="mb-1">Nouveau parfum ajouté</h6>
+              <small class="text-muted">Tom Ford Black Orchid - il y a 2 heures</small>
+            </div>
+          </div>
+          <div class="list-group-item border-0 d-flex align-items-center">
+            <div class="rounded-circle bg-info me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+              <i class="fas fa-edit text-white small"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h6 class="mb-1">Marque mise à jour</h6>
+              <small class="text-muted">Creed - informations modifiées - il y a 4 heures</small>
+            </div>
+          </div>
+          <div class="list-group-item border-0 d-flex align-items-center">
+            <div class="rounded-circle bg-warning me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+              <i class="fas fa-shopping-cart text-white small"></i>
+            </div>
+            <div class="flex-grow-1">
+              <h6 class="mb-1">Nouvelle commande</h6>
+              <small class="text-muted">Commande #1234 - 3 articles - il y a 6 heures</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
