@@ -17,14 +17,31 @@ module AdminPanel
 
     def create
       @parfum = Parfum.new(parfum_params)
-      if @parfum.save
-        redirect_to admin_panel_parfums_path, notice: "Parfum créé avec succès."
-      else
-        render :new
+      @brands = Brand.all
+
+      respond_to do |format|
+        if @parfum.save
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.prepend("parfums_container", partial: "parfum", locals: { parfum: @parfum }),
+              turbo_stream.replace("flash", partial: "shared/flash", locals: { notice: "Parfum créé avec succès" }),
+              turbo_stream.replace("new_parfum", partial: "form", locals: { parfum: Parfum.new, brands: @brands }) # Réinitialise le formulaire
+              # Pas besoin de redirection explicite en Turbo Stream, la mise à jour de l'UI suffit
+            ]
+          end
+          format.html { redirect_to admin_panel_parfums_path, notice: "Parfum créé avec succès" }
+        else
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace("parfum_form", partial: "form", locals: { parfum: @parfum, brands: @brands }),
+            status: :unprocessable_entity
+          end
+          format.html { render :new }
+        end
       end
     end
 
     def edit
+      @parfum = Parfum.find(params[:id])
     end
 
     def update
@@ -36,22 +53,66 @@ module AdminPanel
     end
 
     def destroy
+      @parfum = Parfum.find(params[:id])
       @parfum.destroy
-      redirect_to admin_panel_parfums_path, notice: "Parfum supprimé."
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.remove("parfum_#{@parfum.id}"),
+            turbo_stream.append("flash", partial: "shared/flash", locals: { notice: "Supprimé avec succès" })
+          ]
+        end
+        format.html { redirect_to admin_panel_parfums_path }
+      end
     end
+
+
+    def update
+      @parfum = Parfum.find(params[:id])
+      if @parfum.update(parfum_params)
+        redirect_to admin_panel_parfums_path, notice: "Parfum mis à jour avec succès."
+      else
+        render :edit
+      end
+      if params[:parfum][:remove_image] == "1"
+      @parfum.image.purge
+      end
+    end
+
+    def update_image
+      @parfum = Parfum.find(params[:id])
+
+      if params[:parfum].present? && params[:parfum][:image].present?
+        if @parfum.update(image_params)
+          redirect_to admin_panel_parfum_path(@parfum), notice: "Image importée avec succès."
+        else
+          render :show, alert: "Erreur lors de l’importation de l’image."
+        end
+      else
+        redirect_to admin_panel_parfum_path(@parfum), alert: "Veuillez sélectionner une image avant de cliquer sur Importer."
+      end
+    end
+
+
+
 
     private
 
     def set_parfum
       @parfum = Parfum.find(params[:id])
     end
-
+    def set_remaining_parfums
+      @remaining_parfums = Parfum.where.not(id: @parfum.id)
+    end
     def set_brands
       @brands = Brand.all.order(:name)  # Trié par nom pour affichage dans le select
     end
-
+    def image_params
+      params.require(:parfum).permit(:image)
+    end
     def parfum_params
-      params.require(:parfum).permit(:name, :prix, :brand_id)
+      params.require(:parfum).permit(:name, :prix, :description, :brand_id, :image, :remove_image)
     end
   end
 end

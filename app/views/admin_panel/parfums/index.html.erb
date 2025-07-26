@@ -1,18 +1,11 @@
 <h1>Liste des parfums</h1>
 
-<%= link_to "Ajouter un parfum", new_admin_panel_parfum_path %>
-<ul>
-  <% @parfums.each do |parfum| %>
-    <li>
-      <strong><%= parfum.name %></strong>
-      <% if parfum.image.attached? %>
-        <br>
-        <%= image_tag parfum.image %>
-      <% end %>
-      <br>
-      <%= link_to "Voir", admin_panel_parfum_path(parfum) %> |
-      <%= link_to "Modifier", edit_admin_panel_parfum_path(parfum) %> |
-      <%= link_to "Supprimer", admin_panel_parfum_path(parfum), method: :delete, data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce parfum ?" }, class: "btn btn-danger" %>
-    </li>
-  <% end %>
-</ul>
+<%= link_to "Ajouter un parfum", new_admin_panel_parfum_path, class: "btn btn-primary mb-4" %>
+
+<div id="flash">
+  <%= render "shared/flash" %>
+</div>
+
+<div id="parfums_container" class="row">
+  <%= render @parfums %>
+</div>

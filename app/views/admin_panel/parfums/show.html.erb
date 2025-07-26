@@ -1,9 +1,23 @@
 <h1><%= @parfum.name %></h1>
-
 <p><strong>Description :</strong> <%= @parfum.description %></p>
 <p><strong>Prix :</strong> <%= number_to_currency(@parfum.prix, unit: "Dt") %></p>
 <p><strong>Marque :</strong> <%= @parfum.brand.name %></p>
 
-<%= link_to "Modifier", edit_admin_panel_parfum_path(@parfum) %> |
-<%= link_to "Supprimer", admin_panel_parfum_path(@parfum), method: :delete, data: { confirm: "Êtes-vous sûr ?" } %> |
-<%= link_to "Retour à la liste", admin_panel_parfums_path %>
+<% if @parfum.image.attached? %>
+  <%= image_tag @parfum.image.variant(resize_to_limit: [300, 300]), class: "img-fluid rounded mb-2" %>
+  <p>Image déjà importée</p>
+<% end %>
+
+<div id="parfum_<%= @parfum.id %>">
+<%= link_to "Modifier", edit_admin_panel_parfum_path(@parfum), class: "btn btn-primary" %>
+<%= button_to "Supprimer", admin_panel_parfum_path(@parfum),
+              method: :delete,
+              form: { 
+                data: { 
+                  turbo_confirm: "Voulez-vous vraiment supprimer ce parfum ?" 
+                } 
+              },
+              class: "btn btn-danger" %>
+
+<%= link_to "Retour à la liste", admin_panel_parfums_path, class: "btn btn-secondary" %>
+</div>

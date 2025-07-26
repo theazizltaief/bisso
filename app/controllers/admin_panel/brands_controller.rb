@@ -38,6 +38,16 @@ module AdminPanel
       end
     end
 
+    def update
+     @brand.image.purge if params[:brand][:remove_image] == "1"
+     if @brand.update(brand_params)
+         redirect_to admin_panel_brands_path, notice: "Marque mise à jour."
+     else
+       render :edit
+     end
+    end
+
+
     def destroy
       @brand.destroy
       redirect_to admin_panel_brands_path, notice: "Marque supprimée."
@@ -50,7 +60,7 @@ module AdminPanel
     end
 
     def brand_params
-      params.require(:brand).permit(:name)
+      params.require(:brand).permit(:name, :image)
     end
   end
 end

@@ -1,6 +1,8 @@
-<h1>Bienvenue sur l'espace admin</h1>
-<body class="bg-gray-100 text-gray-800 font-sans antialiased">
-
-<p><%= link_to "Gérer les parfums", admin_panel_parfums_path %></p>
-<p><%= link_to "Gérer les marques", admin_panel_brands_path %></p>
-
+<div class="bg-gray-100 text-gray-800 font-sans antialiased p-4">
+  <h1 class="text-2xl font-bold mb-4">Tableau de bord Admin</h1>
+  
+  <div class="space-y-3">
+    <%= link_to "Gérer les parfums", admin_panel_parfums_path, class: "block text-blue-600 hover:text-blue-800" %>
+    <%= link_to "Gérer les marques", admin_panel_brands_path, class: "block text-blue-600 hover:text-blue-800" %>
+  </div>
+</div>
