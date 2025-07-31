@@ -2,9 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   confirm(event) {
-    if (!confirm(this.element.dataset.turboConfirm)) {
+    const message = this.element.dataset.confirmMessage || "Êtes-vous sûr de vouloir supprimer ?"
+    if (!window.confirm(message)) {
       event.preventDefault()
-      event.stopImmediatePropagation()
     }
   }
 }

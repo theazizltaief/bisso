@@ -1,5 +1,6 @@
 module AdminPanel
   class BrandsController < ApplicationController
+    include ActionView::RecordIdentifier
     before_action :authenticate_admin!
     before_action :set_brand, only: [ :show, :edit, :update, :destroy ]
 
@@ -8,7 +9,10 @@ module AdminPanel
     end
 
     def show
+      @brand = Brand.find(params[:id])
+      @parfums = @brand.parfums
     end
+
 
     def new
      @brand = Brand.new
@@ -49,9 +53,19 @@ module AdminPanel
 
 
     def destroy
+      @brand = Brand.find(params[:id])
       @brand.destroy
-      redirect_to admin_panel_brands_path, notice: "Marque supprimée."
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.remove(dom_id(@brand))
+        end
+        format.html { redirect_to admin_panel_brands_path, notice: "Marque supprimée avec succès" }
+      end
     end
+
+
+
 
     private
 

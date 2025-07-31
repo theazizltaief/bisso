@@ -19,6 +19,11 @@
     <%= f.text_field :name %>
   </div>
 
+  <div class="mb-3">
+  <%= f.label :image, "Logo de la marque", class: "form-label" %>
+  <%= f.file_field :image, class: "form-control" %>
+  </div>
+
   <div>
     <%= f.submit "Créer la marque" %>
   </div>

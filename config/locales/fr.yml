@@ -1,0 +1,29 @@
+fr:
+  activerecord:
+    models:
+      parfum: "Parfum"
+    attributes:
+      parfum:
+        name: "Nom"
+        description: "Description"
+        price: "Prix"
+        brand: "Marque"
+        image: "Image"
+        category: "Catégorie"
+        fragrance_class: "Type de parfum"
+    enums:
+      parfum:
+        category:
+          homme: "Pour Homme"
+          femme: "Pour Femme"
+          unisexe: "Unisexe"
+        fragrance_class:
+          designer: "Designer"
+          niche: "Niche"
+          collection_privee: "Collection Privée"
+
+  devise:
+    sessions:
+      admin:
+        signed_in: "Connexion réussie en tant qu'administrateur"
+      signed_in: "Connexion réussie"

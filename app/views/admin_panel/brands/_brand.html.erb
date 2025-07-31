@@ -1,0 +1,40 @@
+<div class="col" id="<%= dom_id(brand) %>">
+  <div class="card shadow-sm h-100" style="max-width: 200px;">
+    <div class="card-img-container" style="height: 120px; overflow: hidden;">
+      <% if brand.image.attached? %>
+        <%= link_to admin_panel_brand_path(brand) do %>
+          <%= image_tag brand.image.variant(resize_to_limit: [400, 400]), 
+                        class: "img-fluid w-100 h-100",
+                        style: "object-fit: cover; object-position: center;" %>
+        <% end %>
+      <% else %>
+        <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+          <span class="text-muted small">Pas d'image</span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="card-body p-2 d-flex flex-column">
+      <h6 class="card-title mb-2 text-truncate"><%= brand.name %></h6>
+            <div class="d-flex justify-content-between mt-3">
+        <%= link_to edit_admin_panel_brand_path(brand),
+                    class: "btn btn-outline-primary btn-sm rounded-pill flex-fill me-1" do %>
+            <i class="fas fa-edit me-1"></i> Modifier
+        <% end %>
+        <%= button_to admin_panel_brand_path(brand),
+                        method: :delete,
+                        form: {
+                        class: "d-inline",
+                        "data-controller": "confirm",
+                        "data-action": "submit->confirm#confirm",
+                        "data-confirm-message": "⚠️ Supprimer cette marque supprimera aussi ses parfums.",
+                        "data-turbo-frame": "_top"
+                        },
+                        class: "btn btn-outline-danger btn-sm rounded-pill flex-fill ms-1" do %>
+            <i class="fas fa-trash-alt me-1"></i> Supprimer
+        <% end %>
+        </div>
+
+    </div>
+  </div>
+</div>

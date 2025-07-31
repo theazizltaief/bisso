@@ -66,3 +66,6 @@ gem "image_processing"
 gem "mini_magick"
 
 gem "turbo-rails", ">= 2.0.0"
+
+gem "jsbundling-rails", "~> 1.3"
+gem "cssbundling-rails"

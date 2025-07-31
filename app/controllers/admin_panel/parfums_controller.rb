@@ -22,50 +22,39 @@ module AdminPanel
       respond_to do |format|
         if @parfum.save
           format.turbo_stream do
-            render turbo_stream: [
-              turbo_stream.prepend("parfums_container", partial: "parfum", locals: { parfum: @parfum }),
-              turbo_stream.replace("flash", partial: "shared/flash", locals: { notice: "Parfum créé avec succès" }),
-              turbo_stream.replace("new_parfum", partial: "form", locals: { parfum: Parfum.new, brands: @brands }) # Réinitialise le formulaire
-              # Pas besoin de redirection explicite en Turbo Stream, la mise à jour de l'UI suffit
-            ]
+            # Cette ligne va dire à Turbo de suivre la redirection
+            redirect_to admin_panel_parfums_path, notice: "Parfum créé avec succès"
           end
           format.html { redirect_to admin_panel_parfums_path, notice: "Parfum créé avec succès" }
         else
           format.turbo_stream do
             render turbo_stream: turbo_stream.replace("parfum_form", partial: "form", locals: { parfum: @parfum, brands: @brands }),
-            status: :unprocessable_entity
+                  status: :unprocessable_entity
           end
           format.html { render :new }
         end
       end
     end
 
+
     def edit
       @parfum = Parfum.find(params[:id])
     end
 
-    def update
-      if @parfum.update(parfum_params)
-        redirect_to admin_panel_parfums_path, notice: "Parfum mis à jour."
-      else
-        render :edit
-      end
-    end
 
     def destroy
       @parfum = Parfum.find(params[:id])
       @parfum.destroy
 
       respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.remove("parfum_#{@parfum.id}"),
-            turbo_stream.append("flash", partial: "shared/flash", locals: { notice: "Supprimé avec succès" })
-          ]
+        # On supprime la partie turbo_stream pour forcer la redirection
+        format.html do
+          redirect_to admin_panel_parfums_path,
+                      notice: "Parfum supprimé avec succès."
         end
-        format.html { redirect_to admin_panel_parfums_path }
       end
     end
+
 
 
     def update
@@ -112,7 +101,7 @@ module AdminPanel
       params.require(:parfum).permit(:image)
     end
     def parfum_params
-      params.require(:parfum).permit(:name, :prix, :description, :brand_id, :image, :remove_image)
+      params.require(:parfum).permit(:name, :prix, :description, :brand_id, :image, :remove_image, :category, :fragrance_class)
     end
   end
 end

@@ -1,5 +1,9 @@
-import { application } from "@hotwired/stimulus"
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+import { application } from "./application"
 
-// Chargez seulement les contrôleurs nécessaires
-eagerLoadControllersFrom("controllers", application, ["form_controller"])
+// On importe et enregistre chaque contrôleur manuellement
+import HelloController from "./hello_controller"
+import ConfirmController from "./confirm_controller"
+
+application.register("hello", HelloController)
+application.register("confirm", ConfirmController)
+

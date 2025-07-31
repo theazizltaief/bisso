@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_22_175201) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_30_105021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,6 +69,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_22_175201) do
     t.datetime "updated_at", null: false
     t.string "categorie"
     t.text "description"
+    t.integer "category"
+    t.integer "fragrance_class"
     t.index ["brand_id"], name: "index_parfums_on_brand_id"
   end
 

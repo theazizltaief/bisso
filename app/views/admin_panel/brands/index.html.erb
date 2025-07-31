@@ -2,18 +2,8 @@
 
 <%= link_to "Ajouter une marque", new_admin_panel_brand_path, class: "btn btn-primary mb-4" %>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div id="brands_container" class="row row-cols-2 row-cols-md-4 g-3">
   <% @brands.each do |brand| %>
-    <div class="col">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title"><%= brand.name %></h5>
-          <div class="d-flex justify-content-between">
-            <%= link_to "Modifier", edit_admin_panel_brand_path(brand), class: "btn btn-sm btn-warning" %>
-            <%= link_to "Supprimer", admin_panel_brand_path(brand), method: :delete, data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette marque ?" }, class: "btn btn-sm btn-danger" %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "brand", locals: { brand: brand } %>
   <% end %>
 </div>
