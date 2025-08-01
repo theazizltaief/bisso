@@ -34,4 +34,17 @@ Rails.application.routes.draw do
 
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
+
+  # partie api rest pour vitrine
+  namespace :api do
+  namespace :v1 do
+    resources :brands, only: [ :index, :show ]
+    resources :parfums, only: [ :index, :show ]
+    resources :users, only: [ :create ]
+    post "login", to: "auth#login"
+
+    resources :orders, only: [ :create ]
+    resources :cart_items, only: [ :create, :update, :destroy ]
+  end
+end
 end
