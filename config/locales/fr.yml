@@ -2,6 +2,8 @@ fr:
   activerecord:
     models:
       parfum: "Parfum"
+      admin: "Administrateur"
+
     attributes:
       parfum:
         name: "Nom"
@@ -11,6 +13,9 @@ fr:
         image: "Image"
         category: "Catégorie"
         fragrance_class: "Type de parfum"
+      admin:
+        email: "Adresse e-mail"
+
     enums:
       parfum:
         category:
@@ -27,3 +32,8 @@ fr:
       admin:
         signed_in: "Connexion réussie en tant qu'administrateur"
       signed_in: "Connexion réussie"
+
+  errors:
+    messages:
+      not_saved: "Impossible d'enregistrer %{resource} :"
+      blank: "ne peut pas être vide"

@@ -38,7 +38,11 @@
     <%= link_to "Ajouter une nouvelle marque", new_admin_panel_brand_path(redirect_to: request.fullpath) %>
   </p>
 </div>
-
+<br>
+<div class="mb-3">
+  <%= f.label :disponible, "Disponibilité*", class: "form-label" %>
+  <%= f.select :disponible, [["Disponible", true], ["Rupture de stock", false]], {}, class: "form-select" %>
+</div>
 
 
 <div class="mb-3">
@@ -60,10 +64,6 @@
   %>
   <div class="invalid-feedback">Veuillez sélectionner un type</div>
 </div>
-
-
-
-
 <br>
   <div class="mb-3">
     <%= f.label :image, "Image", class: "form-label" %>

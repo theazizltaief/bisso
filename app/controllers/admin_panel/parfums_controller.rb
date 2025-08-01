@@ -101,7 +101,7 @@ module AdminPanel
       params.require(:parfum).permit(:image)
     end
     def parfum_params
-      params.require(:parfum).permit(:name, :prix, :description, :brand_id, :image, :remove_image, :category, :fragrance_class)
+      params.require(:parfum).permit(:name, :prix, :description, :brand_id, :image, :remove_image, :category, :fragrance_class, :disponible)
     end
   end
 end

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bisso Fragrance - Collection Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag "vitrine2", media: "all" %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag "application", type: "module" %>
+</head>
+<body>
+  <header class="header-minimal" data-controller="header-minimal">
+    <nav data-controller="vitrine2" class="nav-minimal">
+      <div class="logo-minimal">
+        <span class="logo-symbol">◆</span>
+        <span class="logo-text">Bisso</span>
+      </div>
+      
+      <ul data-vitrine2-target="menu" class="menu-minimal">
+        <li><a href="#" class="nav-item active">Accueil</a></li>
+        <li><a href="#" class="nav-item">Collections</a></li>
+        <li><a href="#" class="nav-item">Marques</a></li>
+        <li><a href="#" class="nav-item">À Propos</a></li>
+      </ul>
+      
+      <div class="nav-end">
+        <button class="search-toggle" aria-label="Rechercher">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <div class="cart-minimal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge">2</span>
+        </div>
+        <button class="menu-toggle-minimal" data-action="click->vitrine2#toggleMenu">
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer class="footer-minimal">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-minimal">
+            <span class="logo-symbol">◆</span>
+            <span class="logo-text">Bisso</span>
+          </div>
+          <p>L'art de la parfumerie accessible à tous.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Produits</h4>
+            <a href="#">Designer</a>
+            <a href="#">Niche</a>
+            <a href="#">Collection Privée</a>
+          </div>
+          
+          <div class="link-group">
+            <h4>Support</h4>
+            <a href="#">Contact</a>
+            <a href="#">FAQ</a>
+            <a href="#">Livraison</a>
+          </div>
+          
+          <div class="link-group">
+            <h4>Suivez-nous</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bisso Fragrance</p>
+        <div class="footer-legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

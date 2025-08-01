@@ -27,7 +27,7 @@ body.admin-panel {
 /* ==================== Sidebar ==================== */
 body.admin-panel .sidebar {
   background: var(--sidebar-bg);
-  height: 100vh; /* Hauteur stable */
+  height: 100vh;
   width: var(--sidebar-width);
   position: fixed;
   top: 0;
@@ -37,6 +37,7 @@ body.admin-panel .sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: left 0.3s ease;
 }
 
 body.admin-panel .sidebar .text-center h4 {
@@ -58,7 +59,7 @@ body.admin-panel .sidebar a:hover,
 body.admin-panel .sidebar a.active {
   background-color: rgba(255,255,255,0.15);
   color: #fff;
-  transform: translateX(3px); /* effet de glissement */
+  transform: translateX(3px);
 }
 
 /* ==================== Main content ==================== */
@@ -71,17 +72,32 @@ body.admin-panel .main-content {
   transition: margin-left 0.3s;
 }
 
-@media (max-width: 768px) {
-  body.admin-panel .main-content {
-    margin-left: 0;
-    width: 100%;
-  }
+/* Neutraliser padding Bootstrap container-fluid sur main-content */
+.container-fluid {
+  max-width: 1400px; /* ou une autre valeur */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.admin-panel .main-content.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Responsive sidebar & main content */
+@media (max-width: 767.98px) {
   body.admin-panel .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    left: -100%;
   }
+
   body.admin-panel .sidebar.show {
-    transform: translateX(0);
+    left: 0;
+  }
+
+  body.admin-panel .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
   }
 }
 
@@ -164,67 +180,23 @@ body.admin-panel img {
   height: auto;
 }
 
-/* ==================== Responsive ==================== */
-
-/* Sidebar & main content */
+/* ==================== Sidebar Responsive - Important pour la fermeture sur mobile ==================== */
 @media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
+  body.admin-panel .sidebar {
     left: -100%;
-    height: 100vh;
-    width: var(--sidebar-width);
-    background: var(--sidebar-bg);
-    transition: left 0.3s ease;
-    z-index: 2000;
   }
 
-  .sidebar.show {
+  body.admin-panel .sidebar.show {
     left: 0;
   }
-
-  .main-content {
-    margin-left: 0 !important;
-    width: 100% !important;
-  }
-
-  header h1 {
-    font-size: 1rem;
-  }
-
-  .btn {
-    font-size: 0.85rem;
-  }
 }
 
-/* Cards responsive */
-@media (max-width: 768px) {
-  .card {
-    margin-bottom: 15px;
-  }
-
-  .card img {
-    height: auto;
-    max-height: 180px;
-  }
-
-  .card-title {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-}
-
-/* Formulaires */
-@media (max-width: 768px) {
-  form {
-    padding: 0 5px;
-  }
-
-  form .btn {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
+/* Sidebar close button (mobile) */
 .sidebar .btn-close {
-  filter: invert(1); /* icône blanche */
+  filter: invert(1);
+}
+
+/* Empêche débordement vertical du contenu */
+body.admin-panel main {
+  overflow-y: auto;
 }

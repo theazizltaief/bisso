@@ -2,14 +2,14 @@ class Admin::SessionsController < Devise::SessionsController
     # Après login
     def create
       super do |admin|
-        flash[:notice] = "✅ Connexion réussie en tant qu'administrateur"
+        flash[:notice] = "Connexion réussie en tant qu'administrateur"
       end
     end
 
     # Après logout
     def destroy
       super do
-        flash[:notice] = "👋 Déconnexion réussie"
+        flash[:notice] = "Déconnexion réussie"
       end
     end
 

@@ -1,0 +1,115 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-subtitle">Collection Exclusive</span>
+    <h1>L'Art de la Parfumerie</h1>
+    <p>Découvrez nos décants de parfums d'exception, une sélection raffinée de fragrances designer, niche et collections privées.</p>
+    <a href="#" class="btn-primary">
+      <span>Explorer la Collection</span>
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-decoration"></div>
+</section>
+
+<section class="featured-categories">
+  <div class="container">
+    <h2>Nos Collections</h2>
+    <div class="categories-grid">
+      <div class="category-card designer">
+        <div class="category-icon">✨</div>
+        <h3>Designer</h3>
+        <p>Les grandes maisons de parfumerie</p>
+      </div>
+      <div class="category-card niche">
+        <div class="category-icon">🌟</div>
+        <h3>Niche</h3>
+        <p>Créations artisanales exclusives</p>
+      </div>
+      <div class="category-card private">
+        <div class="category-icon">💎</div>
+        <h3>Collection Privée</h3>
+        <p>Fragrances rares et limitées</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <div class="section-header">
+      <h2>Parfums d'Exception</h2>
+      <p>Une sélection minutieuse de nos plus belles découvertes olfactives</p>
+    </div>
+    <div class="product-list">
+      <article class="product-card" data-controller="product-hover">
+        <div class="product-image">
+          <img src="<%= asset_path('parfum1.jpeg') %>" alt="Parfum Exquis" />
+          <div class="product-overlay">
+            <button class="quick-view">Aperçu Rapide</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Designer</span>
+          <h3>Parfum Exquis</h3>
+          <p class="product-notes">Notes boisées et épicées, un voyage sensoriel intense</p>
+          <div class="product-price">
+            <span class="price">À partir de 15€</span>
+            <span class="volume">5ml</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="product-card" data-controller="product-hover">
+        <div class="product-image">
+          <img src="<%= asset_path('parfum2.jpeg') %>" alt="Élégance Pure" />
+          <div class="product-overlay">
+            <button class="quick-view">Aperçu Rapide</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Niche</span>
+          <h3>Élégance Pure</h3>
+          <p class="product-notes">Un souffle floral raffiné aux accents poudrés</p>
+          <div class="product-price">
+            <span class="price">À partir de 22€</span>
+            <span class="volume">5ml</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="product-card" data-controller="product-hover">
+        <div class="product-image">
+          <img src="<%= asset_path('parfum3.jpg') %>" alt="Essence Mystique" />
+          <div class="product-overlay">
+            <button class="quick-view">Aperçu Rapide</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-category">Collection Privée</span>
+          <h3>Essence Mystique</h3>
+          <p class="product-notes">Ambre et vanille envoûtants, une signature unique</p>
+          <div class="product-price">
+            <span class="price">À partir de 35€</span>
+            <span class="volume">5ml</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-content">
+      <h2>Restez Informé</h2>
+      <p>Recevez en exclusivité nos nouvelles arrivées et offres spéciales</p>
+      <form class="newsletter-form" data-controller="newsletter">
+        <input type="email" placeholder="Votre adresse email" required>
+        <button type="submit" class="btn-secondary">S'abonner</button>
+      </form>
+    </div>
+  </div>
+</section>

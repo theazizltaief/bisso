@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_30_105021) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_31_120452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_30_105021) do
     t.text "description"
     t.integer "category"
     t.integer "fragrance_class"
+    t.boolean "disponible", default: true
     t.index ["brand_id"], name: "index_parfums_on_brand_id"
   end
 
