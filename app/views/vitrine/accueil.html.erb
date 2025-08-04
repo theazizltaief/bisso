@@ -1,8 +1,7 @@
 <section class="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-subtitle">Collection Exclusive</span>
-    <h1>L'Art de la Parfumerie</h1>
+    <h1 class="hero-title-animated">L'Art de la Parfumerie au cœur de la médina.</h1>
     <p>Découvrez nos décants de parfums d'exception, une sélection raffinée de fragrances designer, niche et collections privées.</p>
     <a href="#" class="btn-primary">
       <span>Explorer la Collection</span>
@@ -13,26 +12,103 @@
   </div>
   <div class="hero-decoration"></div>
 </section>
-
 <section class="featured-categories">
   <div class="container">
     <h2>Nos Collections</h2>
-    <div class="categories-grid">
-      <div class="category-card designer">
-        <div class="category-icon">✨</div>
-        <h3>Designer</h3>
-        <p>Les grandes maisons de parfumerie</p>
+      <div class="categories-grid">
+        <div class="category-card designer">
+          <div class="category-icon">
+            <img src="<%= asset_path('designer.jpg') %>" alt="Designer Collection" />
+            <div class="icon-overlay"></div>
+          </div>
+            <h3>Designer</h3>
+         <p>Les grandes maisons de parfumerie</p>
+         </div>
+
+        <div class="category-card niche">
+          <div class="category-icon">
+            <img src="<%= asset_path('niche.jpg') %>" alt="Niche Collection" />
+            <div class="icon-overlay"></div>
+          </div>
+          <h3>Niche</h3>
+          <p>Créations artisanales exclusives</p>
+        </div>
+        
+        <div class="category-card private">
+          <div class="category-icon">
+            <img src="<%= asset_path('private collection.jpeg') %>" alt="private Collection" />
+            <div class="icon-overlay"></div>
+          </div>
+          <h3>Collection Privée</h3>
+          <p>Fragrances rares et limitées</p>
+        </div>
       </div>
-      <div class="category-card niche">
-        <div class="category-icon">🌟</div>
-        <h3>Niche</h3>
-        <p>Créations artisanales exclusives</p>
+  </div>
+</section>
+
+<section class="why-choose-us">
+  <div class="container">
+    <div class="section-header-artistic">
+      <span class="section-subtitle">Notre Engagement</span>
+      <h2 class="section-title">Pourquoi Choisir Bisso Fragrance ?</h2>
+      <p class="section-description">
+        Nous nous engageons à vous offrir une expérience olfactive inégalée, alliant qualité irréprochable et service d'excellence.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card authenticity">
+        <div class="feature-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldSealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#B8860B"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="40" fill="url(#goldSealGradient)"/>
+            <path d="M30 50 L45 65 L70 35" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="50" r="48" stroke="url(#goldSealGradient)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <h3>Authenticité Garantie</h3>
+        <p>Chaque décant provient directement de flacons originaux, assurant une pureté et une fidélité absolues à la fragrance.</p>
       </div>
-      <div class="category-card private">
-        <div class="category-icon">💎</div>
-        <h3>Collection Privée</h3>
-        <p>Fragrances rares et limitées</p>
+
+      <div class="feature-card fast-delivery">
+        <div class="feature-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="deliveryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6A4C93"/>
+                <stop offset="100%" stop-color="#9B59B6"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="35" width="60" height="30" rx="8" fill="url(#deliveryGradient)"/>
+            <path d="M20 35 L50 20 L80 35" stroke="url(#deliveryGradient)" stroke-width="4" fill="url(#deliveryGradient)"/>
+            <line x1="50" y1="20" x2="50" y2="65" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 4"/>
+            <path d="M15 50 H85" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+            <path d="M10 55 H90" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+            <path d="M5 60 H95" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <h3>Livraison Rapide et Soignée</h3>
+        <p>Vos précieuses fragrances sont expédiées avec le plus grand soin et arrivent rapidement à votre porte, partout en Tunisie.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="brands-slider" data-controller="brands-slider">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos Marques Partenaires</h2>
+      <p>Découvrez les maisons de parfumerie d'exception dont nous proposons les décants.</p>
+    </div>
+  </div>
+  <div class="slider-container">
+    <div class="brands-track" data-brands-slider-target="track">
+      <!-- Les logos des marques seront insérés ici par JavaScript -->
     </div>
   </div>
 </section>
@@ -52,12 +128,12 @@
           </div>
         </div>
         <div class="product-info">
-          <span class="product-category">Designer</span>
-          <h3>Parfum Exquis</h3>
+          <span class="product-category">Niche</span>
+          <h3>Creed Aventus</h3>
           <p class="product-notes">Notes boisées et épicées, un voyage sensoriel intense</p>
           <div class="product-price">
-            <span class="price">À partir de 15€</span>
-            <span class="volume">5ml</span>
+            <span class="price">À partir de 130 Dt</span>
+            <span class="volume">10 ml</span>
           </div>
         </div>
       </article>
@@ -71,11 +147,11 @@
         </div>
         <div class="product-info">
           <span class="product-category">Niche</span>
-          <h3>Élégance Pure</h3>
+          <h3>Xerjoff Alexandria II</h3>
           <p class="product-notes">Un souffle floral raffiné aux accents poudrés</p>
           <div class="product-price">
-            <span class="price">À partir de 22€</span>
-            <span class="volume">5ml</span>
+            <span class="price">À partir de 150 Dt</span>
+            <span class="volume">10 ml</span>
           </div>
         </div>
       </article>
@@ -89,11 +165,11 @@
         </div>
         <div class="product-info">
           <span class="product-category">Collection Privée</span>
-          <h3>Essence Mystique</h3>
+          <h3>Dior Ambre nuit esprit de parfum</h3>
           <p class="product-notes">Ambre et vanille envoûtants, une signature unique</p>
           <div class="product-price">
-            <span class="price">À partir de 35€</span>
-            <span class="volume">5ml</span>
+            <span class="price">À partir de 120 Dt</span>
+            <span class="volume">10 ml</span>
           </div>
         </div>
       </article>
@@ -101,15 +177,3 @@
   </div>
 </section>
 
-<section class="newsletter">
-  <div class="container">
-    <div class="newsletter-content">
-      <h2>Restez Informé</h2>
-      <p>Recevez en exclusivité nos nouvelles arrivées et offres spéciales</p>
-      <form class="newsletter-form" data-controller="newsletter">
-        <input type="email" placeholder="Votre adresse email" required>
-        <button type="submit" class="btn-secondary">S'abonner</button>
-      </form>
-    </div>
-  </div>
-</section>

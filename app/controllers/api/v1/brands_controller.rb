@@ -26,6 +26,19 @@ module Api
         }
       end
 
+      def only_brands
+        brands = Brand.includes(image_attachment: :blob).all
+
+        render json: brands.map { |brand|
+          {
+            id: brand.id,
+            name: brand.name,
+            image_url: brand.image.attached? ? url_for(brand.image) : nil
+          }
+        }
+      end
+
+
       def show
         brand = Brand.includes(:parfums, image_attachment: :blob).find(params[:id])
         render json: {

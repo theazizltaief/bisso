@@ -14,15 +14,17 @@
 <body>
   <header class="header" data-controller="header-scroll">
     <nav data-controller="vitrine1" class="nav">
-      <div class="logo">
-        <span class="logo-icon">🌸</span>
-        <span class="logo-text">Bisso Fragrance</span>
+        <div class="logo">
+          <%= image_tag "bisso fragrance new logo transparent no letters.png", alt: "Bisso Fragrance", class: "logo-icon" %>
+          <span class="logo-text">Bisso Fragrance</span>
+        </div>
+
+        <span class="logo-icon" ></span>
       </div>
       <ul data-vitrine1-target="menu" class="menu">
         <li><a href="#" class="nav-link active">Accueil</a></li>
         <li><a href="#" class="nav-link">Parfums</a></li>
         <li><a href="#" class="nav-link">Marques</a></li>
-        <li><a href="#" class="nav-link">À Propos</a></li>
         <li><a href="#" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
@@ -58,15 +60,31 @@
       <div class="footer-content">
         <div class="footer-section">
           <div class="footer-logo">
-            <span class="logo-icon">🌸</span>
-            <span class="logo-text">Bisso Fragrance</span>
-          </div>
+             <div class="logo">
+                 <%= image_tag "bisso fragrance new logo transparent no letters.png", alt: "Bisso Fragrance", class: "logo-icon" %>
+                  <span class="logo-text">Bisso Fragrance</span>
+              </div>
+            </div>
           <p>L'art de la parfumerie à portée de main. Découvrez nos décants de fragrances d'exception.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Facebook">📘</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-          </div>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram" class="social-instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="18.5" cy="5.5" r="1"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Facebook" class="social-facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="TikTok" class="social-tiktok">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+              </a>
+            </div>
         </div>
         <div class="footer-section">
           <h4>Collections</h4>
@@ -74,27 +92,9 @@
             <li><a href="#">Designer</a></li>
             <li><a href="#">Niche</a></li>
             <li><a href="#">Collection Privée</a></li>
-            <li><a href="#">Nouveautés</a></li>
           </ul>
         </div>
-        <div class="footer-section">
-          <h4>Service Client</h4>
-          <ul>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Livraison</a></li>
-            <li><a href="#">Retours</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Informations</h4>
-          <ul>
-            <li><a href="#">À Propos</a></li>
-            <li><a href="#">Conditions</a></li>
-            <li><a href="#">Confidentialité</a></li>
-            <li><a href="#">Mentions Légales</a></li>
-          </ul>
-        </div>
+
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Bisso Fragrance. Tous droits réservés.</p>

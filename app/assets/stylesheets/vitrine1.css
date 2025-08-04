@@ -73,8 +73,16 @@ body {
 
 .logo-icon {
   font-size: 1.5rem;
+  width: 42px;
+  height: 38px;
+  background-image: url('<%= asset_path("bisso fragrance new logo transparent.png") %>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-
+.header-dark .logo-icon {
+  filter: invert(1) brightness(1.2);
+}
 .menu {
   list-style: none;
   display: flex;
@@ -487,62 +495,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Newsletter section */
-.newsletter {
-  background: var(--dark-charcoal);
-  color: white;
-  padding: 4rem 0;
-}
-
-.newsletter-content {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.newsletter h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.newsletter p {
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.newsletter-form input {
-  flex: 1;
-  padding: 1rem;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  outline: none;
-}
-
-.btn-secondary {
-  background: var(--primary-gold);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 25px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.btn-secondary:hover {
-  background: var(--secondary-gold);
-  transform: translateY(-2px);
-}
 
 /* Footer amélioré */
 .footer {
@@ -553,7 +505,7 @@ body {
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 3rem;
   margin-bottom: 3rem;
 }
@@ -599,19 +551,121 @@ body {
   line-height: 1.6;
 }
 
+/*Social links*/
+
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .social-links a {
-  display: inline-block;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.social-links a:hover::before {
+  opacity: 1;
+}
+
+.social-links a svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-  transform: scale(1.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+  color: white;
+}
+
+.social-links a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Couleurs spécifiques pour chaque réseau social */
+.social-instagram:hover::before {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.social-facebook:hover::before {
+  background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+
+.social-tiktok:hover::before {
+  background: linear-gradient(135deg, #ff0050, #00f2ea);
+}
+
+/* Animation de pulsation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.social-links a:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-links {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .social-links a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-links a svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links a {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .social-links a svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .footer-bottom {
@@ -671,10 +725,6 @@ body {
     gap: 2rem;
   }
 
-  .newsletter-form {
-    flex-direction: column;
-    gap: 1rem;
-  }
 
   .footer-content {
     grid-template-columns: 1fr;
@@ -724,4 +774,497 @@ body {
 
 .product-card:nth-child(3) {
   animation-delay: 0.2s;
+}
+
+/*category grid design :niche designer private collection*/
+
+.category-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.category-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: all 0.4s ease;
+}
+
+.category-card:hover .category-icon svg {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+/* Effets spécifiques pour chaque catégorie */
+.designer-collection:hover .category-icon svg {
+  filter: drop-shadow(0 8px 16px rgba(255, 215, 0, 0.4));
+}
+
+.niche-collection:hover .category-icon svg {
+  filter: drop-shadow(0 8px 16px rgba(147, 112, 219, 0.4));
+}
+
+.private-collection:hover .category-icon svg {
+  filter: drop-shadow(0 8px 16px rgba(201, 169, 110, 0.4));
+}
+
+/* Animation de brillance */
+@keyframes shine {
+  0% { opacity: 0; transform: translateX(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+.category-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .category-icon::after {
+  animation: shine 1.5s ease-in-out;
+}
+
+/* Responsive pour les icônes */
+@media (max-width: 768px) {
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+  }
+}
+
+/*Style pour les images des catégories*/
+
+.category-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.category-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(184, 134, 11, 0.3));
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+}
+
+.category-card:hover .category-icon img {
+  transform: scale(1.2);
+}
+
+.category-card:hover .icon-overlay {
+  opacity: 1;
+}
+
+/* Effet de bordure dorée */
+.category-icon::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.category-card:hover .category-icon::before {
+  opacity: 1;
+}
+
+/* Effet de pulsation */
+@keyframes luxuryPulse {
+  0% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1); }
+  50% { box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4); }
+  100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1); }
+}
+
+.category-card:hover .category-icon {
+  animation: luxuryPulse 2s infinite;
+}
+
+/* Animation simple fade in de bas vers haut pour le titre */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* État initial du titre */
+.hero-title-animated {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title-animated {
+    animation-delay: 0.3s;
+  }
+}
+
+/* Pour les utilisateurs qui préfèrent les animations réduites */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-animated {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*bloc de pourquoi nous choisir*/
+
+/* Nouvelle section "Pourquoi Choisir Bisso Fragrance ?" */
+.why-choose-us {
+  padding: 8rem 0;
+  background: var(--warm-white);
+}
+
+.section-header-artistic {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-subtitle {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.section-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background: var(--soft-cream);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-medium);
+  background: var(--warm-white);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.feature-card:hover::before {
+  opacity: 0.05;
+}
+
+.feature-card .feature-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card .feature-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  transition: all 0.4s ease;
+}
+
+.feature-card:hover .feature-icon svg {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.2));
+}
+
+.feature-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animations pour les cartes de fonctionnalités */
+.feature-card {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0; /* Initial state for animation */
+}
+
+.feature-card.authenticity {
+  animation-delay: 0.3s;
+}
+
+.feature-card.fast-delivery {
+  animation-delay: 0.6s;
+}
+
+/* Responsive pour la nouvelle section */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-us {
+    padding: 6rem 0;
+  }
+  .feature-card {
+    padding: 2rem;
+  }
+  .feature-card .feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card .feature-icon {
+    width: 70px;
+    height: 70px;
+  }
+  .feature-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/*partie slider des marques*/
+/* Section Marques Partenaires */
+.brands-slider-section {
+  padding: 4rem 0;
+  background-color: #f8f8f8; /* Un fond clair pour que l'effet de mix-blend-mode soit visible */
+  overflow: hidden; /* Important pour cacher les parties du slider hors écran */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+  font-family: 'Playfair Display', serif; /* Exemple de police luxueuse */
+}
+
+.brands-slider .section-header {
+  margin-bottom: 3rem;
+}
+
+.brands-slider-wrapper {
+  width: 100%;
+  overflow: hidden; /* Cache les débordements du track */
+  position: relative;
+  padding: 1rem 0; /* Espace au-dessus et en dessous du slider */
+}
+
+.brands-slider-track {
+  display: flex;
+  animation: scroll 80s linear infinite; /* Vitesse ralentie à 40s (ajustez si besoin) */
+  white-space: nowrap; /* Empêche les éléments de passer à la ligne */
+  will-change: transform; /* Optimisation pour l'animation */
+}
+
+.brand-logo-item-link {
+  text-decoration: none; /* Supprime le soulignement des liens */
+  color: inherit; /* Hérite la couleur du texte */
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0; /* Espace pour les ombres */
+}
+
+.brands-track {
+  display: flex;
+  width: max-content; /* Permet aux éléments de s'aligner horizontalement */
+  animation: scrollBrands 30s linear infinite; /* Animation de défilement */
+}
+
+.brand-logo-item {
+  flex-shrink: 0; /* Empêche les éléments de rétrécir */
+  width: 180px; /* Taille fixe pour chaque logo */
+  height: 120px; /* Hauteur fixe */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px; /* Espacement interne */
+  margin: 0 20px; /* Espacement entre les logos */
+  background-color: #fff; /* Fond blanc pour chaque item */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Ombre subtile */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.brand-logo-item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.brand-logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Assure que l'image est contenue sans être coupée */
+  filter: grayscale(100%); /* Rendre les logos gris par défaut */
+  opacity: 0.7; /* Légèrement transparent par défaut */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  /* Pour les fonds blancs des JPEG, mix-blend-mode: multiply peut aider à les rendre "transparents" */
+  /* Cela fonctionne mieux sur un fond coloré ou texturé. */
+  mix-blend-mode: multiply;
+}
+
+.brand-logo-item:hover {
+  transform: translateY(-5px) scale(1.02); /* Léger soulèvement et zoom */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+.brand-logo-item:hover img {
+  filter: grayscale(0%); /* Couleur au survol */
+  opacity: 1; /* Pleine opacité au survol */
+  transform: scale(1.05); /* Zoom léger sur l'image */
+}
+
+/* Animation de défilement infini */
+@keyframes scrollBrands {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Défile de la moitié de la largeur du track (car dupliqué) */
+  }
+}
+
+/* Responsive pour le slider */
+@media (max-width: 768px) {
+  .brands-track {
+    animation-duration: 20s; /* Plus rapide sur mobile */
+  }
+  .brand-logo-item {
+    width: 150px;
+    height: 80px;
+    padding: 0 1rem;
+  }
+  .brand-logo-item img {
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-logo-item {
+    width: 120px;
+    height: 80px;
+    margin: 0 10px;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-description {
+    font-size: 1rem;
+  }
 }
