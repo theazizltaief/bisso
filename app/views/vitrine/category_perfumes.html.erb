@@ -1,0 +1,34 @@
+<div class="category-perfumes-page-container"
+     data-controller="category-perfumes"
+     data-category-perfumes-category-value="<%= params[:category] %>">
+
+  <div class="container">
+    <% if flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
+
+    <header class="category-perfumes-header">
+      <h1 class="category-perfumes-title" data-category-perfumes-target="categoryTitle">
+        Chargement des parfums...
+      </h1>
+      <p class="category-perfumes-slogan" data-category-perfumes-target="categorySlogan">
+        Découvrez notre sélection de parfums pour cette catégorie.
+      </p>
+    </header>
+
+    <section class="perfumes-grid-container">
+      <h2 class="section-subtitle">Parfums</h2>
+      <div class="perfumes-grid" data-category-perfumes-target="perfumesGrid">
+        <!-- Les cartes de parfums seront insérées ici par le contrôleur Stimulus -->
+        <p class="loading-message">Chargement des parfums...</p>
+      </div>
+      <div class="pagination-container" data-category-perfumes-target="pagination">
+        <!-- La pagination sera insérée ici par le contrôleur Stimulus -->
+      </div>
+    </section>
+
+    <div class="back-link">
+      <%= link_to "Retour à l'accueil", root_path %>
+    </div>
+  </div>
+</div>

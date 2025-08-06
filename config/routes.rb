@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   # NOUVELLE ROUTE POUR LA PAGE DE DÉTAILS DES MARQUES DANS LA VITRINE
   get "vitrine/brands/:id", to: "vitrine#show_brand", as: :vitrine_brand_show
+  # Route pour la page des parfums par catégorie
+  get "vitrine/parfums", to: "vitrine#category_perfumes", as: :category_perfumes
 
   # Redirection root spécifique aux admins authentifiés
   authenticated :admin do

@@ -99,6 +99,46 @@
   </div>
 </section>
 
+
+<section class="gender-category-cards-section"> <!-- CHANGÉ -->
+  <div class="container">
+    <h2>Explorez par Catégorie</h2>
+    <div class="gender-category-cards-grid"> <!-- CHANGÉ -->
+
+      <!-- Carte Parfum Homme -->
+      <a href="<%= category_perfumes_path(category: 'homme') %>" class="gender-category-card gender-category-card-homme"> <!-- CHANGÉ -->
+        <div class="gender-category-card-overlay"></div> <!-- CHANGÉ -->
+        <div class="gender-category-card-content"> <!-- CHANGÉ -->
+          <h3 class="gender-category-card-title">Parfum Homme</h3> <!-- CHANGÉ -->
+          <p class="gender-category-card-description">Découvrez des fragrances audacieuses et sophistiquées pour l'homme moderne.</p> <!-- CHANGÉ -->
+        </div>
+      </a>
+
+      <!-- Carte Parfum Femme -->
+      <a href="<%= category_perfumes_path(category: 'femme') %>" class="gender-category-card gender-category-card-femme"> <!-- CHANGÉ -->
+        <div class="gender-category-card-overlay"></div> <!-- CHANGÉ -->
+        <div class="gender-category-card-content"> <!-- CHANGÉ -->
+          <h3 class="gender-category-card-title">Parfum Femme</h3> <!-- CHANGÉ -->
+          <p class="gender-category-card-description">Explorez des senteurs élégantes et captivantes, parfaites pour chaque occasion.</p> <!-- CHANGÉ -->
+        </div>
+      </a>
+
+      <!-- Carte Parfum Unisexe -->
+      <a href="<%= category_perfumes_path(category: 'unisexe') %>" class="gender-category-card gender-category-card-unisexe"> <!-- CHANGÉ -->
+        <div class="gender-category-card-overlay"></div> <!-- CHANGÉ -->
+        <div class="gender-category-card-content"> <!-- CHANGÉ -->
+          <h3 class="gender-category-card-title">Parfum Unisexe</h3> <!-- CHANGÉ -->
+          <p class="gender-category-card-description">Découvrez des créations uniques qui transcendent les genres, pour tous.</p> <!-- CHANGÉ -->
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
 <section class="brands-slider" data-controller="brands-slider" >
   <div class="container">
     <div class="section-header">
@@ -112,68 +152,5 @@
     </div>
   </div>
 </section>
-
-<section class="products">
-  <div class="container">
-    <div class="section-header">
-      <h2>Parfums d'Exception</h2>
-      <p>Une sélection minutieuse de nos plus belles découvertes olfactives</p>
-    </div>
-    <div class="product-list">
-      <article class="product-card" data-controller="product-hover">
-        <div class="product-image">
-          <img src="<%= asset_path('parfum1.jpeg') %>" alt="Parfum Exquis" />
-          <div class="product-overlay">
-            <button class="quick-view">Aperçu Rapide</button>
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Niche</span>
-          <h3>Creed Aventus</h3>
-          <p class="product-notes">Notes boisées et épicées, un voyage sensoriel intense</p>
-          <div class="product-price">
-            <span class="price">À partir de 130 Dt</span>
-            <span class="volume">10 ml</span>
-          </div>
-        </div>
-      </article>
-      
-      <article class="product-card" data-controller="product-hover">
-        <div class="product-image">
-          <img src="<%= asset_path('parfum2.jpeg') %>" alt="Élégance Pure" />
-          <div class="product-overlay">
-            <button class="quick-view">Aperçu Rapide</button>
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Niche</span>
-          <h3>Xerjoff Alexandria II</h3>
-          <p class="product-notes">Un souffle floral raffiné aux accents poudrés</p>
-          <div class="product-price">
-            <span class="price">À partir de 150 Dt</span>
-            <span class="volume">10 ml</span>
-          </div>
-        </div>
-      </article>
-      
-      <article class="product-card" data-controller="product-hover">
-        <div class="product-image">
-          <img src="<%= asset_path('parfum3.jpg') %>" alt="Essence Mystique" />
-          <div class="product-overlay">
-            <button class="quick-view">Aperçu Rapide</button>
-          </div>
-        </div>
-        <div class="product-info">
-          <span class="product-category">Collection Privée</span>
-          <h3>Dior Ambre nuit esprit de parfum</h3>
-          <p class="product-notes">Ambre et vanille envoûtants, une signature unique</p>
-          <div class="product-price">
-            <span class="price">À partir de 120 Dt</span>
-            <span class="volume">10 ml</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
+<br>
 

@@ -219,6 +219,39 @@
   margin-bottom: 0; /* Supprime la marge du bas */
 }
 
+/* NOUVEAUX STYLES POUR LE BADGE DE DISPONIBILITÉ */
+.perfume-availability-badge {
+  position: absolute;
+  top: 10px; /* Distance du haut de la carte */
+  left: 10px; /* Distance de la gauche de la carte */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.perfume-availability-badge--available {
+  background-color: #28a745; /* Vert pour "Disponible" */
+}
+
+.perfume-availability-badge--unavailable {
+  background-color: #dc3545; /* Rouge pour "Rupture de stock" */
+}
+/* Ajustements responsives pour le badge */
+@media (max-width: 768px) {
+  .perfume-availability-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
 /* NOUVEAU STYLE POUR LE VOLUME (10ml) */
 .perfume-volume {
   position: absolute;

@@ -11,4 +11,9 @@ class VitrineController < ApplicationController
     # Aucune logique de récupération de données ici.
     # Le contrôleur Stimulus 'brand_perfumes' s'en chargera côté client.
   end
+
+  def category_perfumes
+    # Cette action ne fait que rendre la vue.
+    # La logique de récupération et de filtrage des parfums sera gérée côté client par Stimulus.
+  end
 end
