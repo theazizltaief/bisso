@@ -30,15 +30,14 @@ export default class extends Controller {
       return;
     }
 
-    // Dupliquer les marques pour créer un effet de boucle infini fluide
-    // Nous dupliquons le tableau pour que l'animation CSS puisse boucler sans "saut"
-    // Si vous avez beaucoup de marques, vous pouvez ajuster le nombre de duplications (ex: x3, x4)
     const duplicatedBrands = [...brands, ...brands]; 
 
     const brandHtml = duplicatedBrands.map(brand => `
-      <div class="brand-logo-item">
-        <img src="${brand.image_url}" alt="${brand.name}" />
-      </div>
+      <a href="/vitrine/brands/${brand.id}" class="brand-logo-item-link">
+        <div class="brand-logo-item">
+          <img src="${brand.image_url}" alt="${brand.name}" />
+        </div>
+      </a>
     `).join('');
 
     this.trackTarget.innerHTML = brandHtml;
