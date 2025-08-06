@@ -316,7 +316,7 @@ body {
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -324,7 +324,7 @@ body {
 .category-card {
   background: var(--soft-cream);
   padding: 3rem 2rem;
-  border-radius: 20px;
+  border-radius: 50px;
   text-align: center;
   transition: all 0.3s ease;
   border: 1px solid rgba(212, 175, 55, 0.1);
@@ -783,8 +783,8 @@ body {
 /*category grid design :niche designer private collection*/
 
 .category-icon {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   margin: 0 auto 2rem;
   display: flex;
   align-items: center;
