@@ -17,11 +17,12 @@ Rails.application.routes.draw do
     resources :brands # Ceci est la route pour le BrandsController de l'admin panel
   end
 
-  # Routes publiques pour parfums
-  resources :parfums # Gardez cette ligne pour les parfums publics
+  # NOUVELLE ROUTE SPÉCIFIQUE POUR LA PAGE DE DÉTAILS DES PARFUMS DANS LA VITRINE
+  get "vitrine/parfums/:id", to: "vitrine#show_parfum", as: :vitrine_parfum_show
 
   # NOUVELLE ROUTE POUR LA PAGE DE DÉTAILS DES MARQUES DANS LA VITRINE
   get "vitrine/brands/:id", to: "vitrine#show_brand", as: :vitrine_brand_show
+
   # Route pour la page des parfums par catégorie
   get "vitrine/parfums", to: "vitrine#category_perfumes", as: :category_perfumes
 

@@ -53,26 +53,33 @@ export default class extends Controller {
       return;
     }
 
-    const perfumeHtml = perfumesToDisplay.map(perfume => `
-      <div class="perfume-card">
-        <a href="/parfums/${perfume.id}" class="perfume-card-link">
-          <div class="perfume-image-wrapper">
-            <img src="${perfume.image_url || '/placeholder.svg?height=250&width=250'}" alt="${perfume.name}" class="perfume-image">
-            <div class="image-overlay"></div>
-          </div>
-          <div class="perfume-content">
-            <h3 class="perfume-name">${perfume.name}</h3>
-            <p class="perfume-description">${this.truncateText(perfume.description, 100)}</p>
-            <div class="perfume-meta">
-              <span class="perfume-category">${perfume.category ? perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1) : ''}</span>
-              <span class="perfume-class">${perfume.fragrance_class ? perfume.fragrance_class.charAt(0).toUpperCase() + perfume.fragrance_class.slice(1) : ''}</span>
+    const perfumeHtml = perfumesToDisplay.map(perfume => {
+      const imageUrl = perfume.image_url || "/placeholder.svg?height=250&width=250&text=Parfum";
+      const availabilityStatus = perfume.disponible ? 'Disponible' : 'Rupture de stock';
+      const availabilityClass = perfume.disponible ? 'perfume-availability-badge--available' : 'perfume-availability-badge--unavailable';
+
+      return `
+        <div class="perfume-card">
+          <a href="/vitrine/parfums/${perfume.id}" class="perfume-card-link">
+            <div class="perfume-image-wrapper">
+              <img src="${imageUrl}" alt="${perfume.name}" class="perfume-image">
+              <div class="image-overlay"></div>
             </div>
-            <p class="perfume-price">${this.formatCurrency(perfume.prix)}</p>
-          </div>
-        </a>
-        <div class="perfume-volume">10ml</div> <!-- NOUVEL ÉLÉMENT AJOUTÉ ICI -->
-      </div>
-    `).join('');
+            <div class="perfume-content">
+              <h3 class="perfume-name">${perfume.name}</h3>
+              <p class="perfume-description">${this.truncateText(perfume.description, 100)}</p>
+              <div class="perfume-meta">
+                <span class="perfume-category">${perfume.category ? perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1) : ''}</span>
+                <span class="perfume-class">${perfume.fragrance_class ? perfume.fragrance_class.charAt(0).toUpperCase() + perfume.fragrance_class.slice(1) : ''}</span>
+              </div>
+              <p class="perfume-price">${this.formatCurrency(perfume.prix)}</p>
+            </div>
+          </a>
+          <div class="perfume-volume">10ml</div> <!-- AJOUTÉ ICI -->
+          <div class="perfume-availability-badge ${availabilityClass}">${availabilityStatus}</div>
+        </div>
+      `;
+    }).join('');
 
     this.perfumesGridTarget.innerHTML = perfumeHtml;
   }
@@ -160,5 +167,10 @@ export default class extends Controller {
       return text;
     }
     return text.substring(0, maxLength) + '...';
+  }
+
+  capitalizeFirstLetter(string) {
+    if (!string) return '';
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

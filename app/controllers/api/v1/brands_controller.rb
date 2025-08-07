@@ -1,11 +1,11 @@
-include Rails.application.routes.url_helpers
-
+# app/controllers/api/v1/brands_controller.rb
 module Api
   module V1
     class BrandsController < ApplicationController
+      include Rails.application.routes.url_helpers
+
       def index
         brands = Brand.includes(:parfums, image_attachment: :blob).all
-
         render json: brands.map { |brand|
           {
             id: brand.id,
@@ -19,7 +19,8 @@ module Api
                 description: parfum.description,
                 category: parfum.category,
                 fragrance_class: parfum.fragrance_class,
-                image_url: parfum.image.attached? ? url_for(parfum.image) : nil
+                image_url: parfum.image.attached? ? url_for(parfum.image) : nil,
+                disponible: parfum.disponible # AJOUTÉ : Inclure le statut de disponibilité
               }
             }
           }
@@ -28,7 +29,6 @@ module Api
 
       def only_brands
         brands = Brand.includes(image_attachment: :blob).all
-
         render json: brands.map { |brand|
           {
             id: brand.id,
@@ -37,7 +37,6 @@ module Api
           }
         }
       end
-
 
       def show
         brand = Brand.includes(:parfums, image_attachment: :blob).find(params[:id])
@@ -53,7 +52,8 @@ module Api
               description: parfum.description,
               category: parfum.category,
               fragrance_class: parfum.fragrance_class,
-              image_url: parfum.image.attached? ? url_for(parfum.image) : nil
+              image_url: parfum.image.attached? ? url_for(parfum.image) : nil,
+              disponible: parfum.disponible # AJOUTÉ : Inclure le statut de disponibilité
             }
           }
         }

@@ -16,4 +16,22 @@ class VitrineController < ApplicationController
     # Cette action ne fait que rendre la vue.
     # La logique de récupération et de filtrage des parfums sera gérée côté client par Stimulus.
   end
+
+  # NOUVELLE MÉTHODE : Action pour afficher les détails d'un parfum
+  def show_parfum
+    @parfum = Parfum.find_by(id: params[:id])
+
+    if @parfum.nil?
+      flash[:alert] = "Le parfum demandé n'existe pas."
+      redirect_to vitrine_accueil_path # Redirige vers l'accueil de la vitrine
+      return # Arrête l'exécution de l'action pour éviter de rendre la vue avec @parfum = nil
+    end
+
+    # Récupérer les parfums associés de la même marque (exclure le parfum actuel)
+    if @parfum.brand
+      @associated_parfums = @parfum.brand.parfums.where.not(id: @parfum.id).limit(4)
+    else
+      @associated_parfums = []
+    end
+  end
 end
