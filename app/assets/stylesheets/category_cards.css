@@ -142,6 +142,37 @@
   line-height: 1.6;
 }
 
+/* NOUVEAUX STYLES POUR LE BOUTON "AJOUTER AU PANIER" SUR LES CARTES DE LISTE */
+.perfume-card-add-to-cart-btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--gold-accent);
+  color: #fff;
+  border: 2px solid var(--gold-accent);
+  width: 100%; /* Pour qu'il prenne toute la largeur disponible */
+  margin-top: 10px; /* Espace au-dessus du bouton */
+}
+
+.perfume-card-add-to-cart-btn:hover:not(:disabled) {
+  background-color: var(--dark-gold);
+  border-color: var(--dark-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+}
+
+.perfume-card-add-to-cart-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #cccccc; /* Couleur grisée pour désactivé */
+  border-color: #cccccc;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .category-cards-section {
@@ -172,5 +203,9 @@
   }
   .category-perfumes-slogan {
     font-size: 1rem;
+  }
+  .perfume-card-add-to-cart-btn {
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 }

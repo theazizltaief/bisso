@@ -2,16 +2,16 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["categoryTitle", "categorySlogan", "perfumesGrid", "pagination"];
-  // CHANGÉ : filterType (ex: 'category', 'fragrance_class') et filterValue (ex: 'homme', 'niche')
-  static values = { filterType: String, filterValue: String };
+  // MODIFIÉ: S'attend maintenant à une seule valeur 'category'
+  static values = { category: String };
 
   allPerfumes = [];
   currentPage = 1;
   perfumesPerPage = 12; // Nombre de parfums à afficher par page
 
   connect() {
-    console.log(`Category Perfumes controller connecté pour ${this.filterTypeValue}:`, this.filterValueValue);
-    this.updateHeaderContent(); // Nouvelle fonction pour mettre à jour le titre et le slogan
+    console.log(`Category Perfumes controller connecté pour la catégorie:`, this.categoryValue);
+    this.updateHeaderContent(); // Met à jour le titre et le slogan
     this.fetchPerfumes();
   }
 
@@ -19,12 +19,17 @@ export default class extends Controller {
     let titleText = '';
     let sloganText = '';
 
-    if (this.filterTypeValue === 'category') {
-      titleText = `Parfums ${this.capitalizeFirstLetter(this.filterValueValue)}`;
-      sloganText = `Découvrez notre sélection de parfums pour ${this.filterValueValue}.`;
-    } else if (this.filterTypeValue === 'fragrance_class') {
-      titleText = `Parfums ${this.capitalizeFirstLetter(this.filterValueValue)}`;
-      sloganText = `Explorez l'univers des parfums de classe ${this.filterValueValue}.`;
+    // Détermine si c'est un genre ou une classe de parfum basé sur la valeur elle-même
+    const genderCategories = ['homme', 'femme', 'unisexe'];
+    const fragranceClasses = ['designer', 'niche', 'collection_privee'];
+    const filterValueLower = this.categoryValue.toLowerCase();
+
+    if (genderCategories.includes(filterValueLower)) {
+      titleText = `Parfums ${this.capitalizeFirstLetter(filterValueLower)}`;
+      sloganText = `Découvrez notre sélection de parfums pour ${filterValueLower}.`;
+    } else if (fragranceClasses.includes(filterValueLower)) {
+      titleText = `Parfums ${this.capitalizeFirstLetter(filterValueLower)}`;
+      sloganText = `Explorez l'univers des parfums de classe ${filterValueLower}.`;
     } else {
       titleText = "Parfums";
       sloganText = "Découvrez toutes nos fragrances.";
@@ -44,14 +49,14 @@ export default class extends Controller {
       }
       const data = await response.json();
 
-      // Filtrer les parfums en fonction du filterType et filterValue
+      // MODIFIÉ: Filtrer les parfums en fonction de la seule 'categoryValue'
       this.allPerfumes = data.filter(perfume => {
-        if (this.filterTypeValue === 'category') {
-          return perfume.category && perfume.category.toLowerCase() === this.filterValueValue.toLowerCase();
-        } else if (this.filterTypeValue === 'fragrance_class') {
-          return perfume.fragrance_class && perfume.fragrance_class.toLowerCase() === this.filterValueValue.toLowerCase();
-        }
-        return true; // Si aucun filtre n'est spécifié, affiche tout (cas par défaut)
+        const categoryLower = perfume.category ? perfume.category.toLowerCase() : '';
+        const fragranceClassLower = perfume.fragrance_class ? perfume.fragrance_class.toLowerCase() : '';
+        const filterValueLower = this.categoryValue.toLowerCase();
+
+        // Vérifie si la valeur du filtre correspond à la catégorie OU à la classe de fragrance
+        return categoryLower === filterValueLower || fragranceClassLower === filterValueLower;
       });
 
       if (this.allPerfumes.length === 0) {
@@ -95,9 +100,22 @@ export default class extends Controller {
                 <span class="perfume-class">${perfume.fragrance_class ? this.capitalizeFirstLetter(perfume.fragrance_class) : ''}</span>
               </div>
               <p class="perfume-price">${this.formatCurrency(perfume.prix)}</p>
+              <div class="perfume-card-actions">
+                <button
+                  class="perfume-card-add-to-cart-btn"
+                  data-action="click->cart#addToCart"
+                  data-parfum-id="${perfume.id}"
+                  data-parfum-name="${perfume.name}"
+                  data-parfum-price="${perfume.prix}"
+                  data-parfum-image-url="${imageUrl}"
+                  ${!perfume.disponible ? 'disabled' : ''}
+                >
+                  Ajouter au panier
+                </button>
+              </div>
             </div>
           </a>
-          <div class="perfume-volume">10ml</div> <!-- AJOUTÉ ICI -->
+          <div class="perfume-volume">10ml</div>
           <div class="perfume-availability-badge ${availabilityClass}">${availabilityStatus}</div>
         </div>
       `;

@@ -24,14 +24,24 @@
 
       <div class="vitrine-parfum-detail-price-status">
         <span class="vitrine-parfum-detail-price"><%= number_to_currency(@parfum.prix, unit: "TND", separator: ",", delimiter: " ", format: "%n %u") %></span>
-        <span class="vitrine-parfum-detail-volume">10ml</span> <%# THIS IS THE LINE THAT WAS MISSING OR OVERWRITTEN %>
+        <span class="vitrine-parfum-detail-volume">10ml</span>
         <span class="vitrine-parfum-detail-availability <%= @parfum.disponible ? 'is-available' : 'is-unavailable' %>">
           <%= @parfum.disponible ? 'Disponible' : 'Rupture de stock' %>
         </span>
       </div>
 
       <div class="vitrine-parfum-detail-actions">
-        <button class="vitrine-parfum-detail-add-to-cart-btn" <%= 'disabled' unless @parfum.disponible %>>Ajouter au panier</button>
+        <button
+          class="vitrine-parfum-detail-add-to-cart-btn"
+          <%= 'disabled' unless @parfum.disponible %>
+          data-action="click->cart#addToCart"
+          data-parfum-id="<%= @parfum.id %>"
+          data-parfum-name="<%= @parfum.name %>"
+          data-parfum-price="<%= @parfum.prix %>"
+          data-parfum-image-url="<%= @parfum.image.attached? ? rails_blob_path(@parfum.image) : '/placeholder.svg?height=50&width=50&text=P' %>"
+        >
+          Ajouter au panier
+        </button>
         <button class="vitrine-parfum-detail-buy-now-btn" <%= 'disabled' unless @parfum.disponible %>>Acheter maintenant</button>
       </div>
     </div>

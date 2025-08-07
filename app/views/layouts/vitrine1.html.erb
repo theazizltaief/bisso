@@ -7,20 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <%= stylesheet_link_tag "vitrine1","brands", "category_cards","gender_category_cards","vitrine_parfum_detail", media: "all" %>
+  <%= stylesheet_link_tag "vitrine1","brands", "category_cards","gender_category_cards","vitrine_parfum_detail","cart_styles", media: "all" %>
   <%= javascript_importmap_tags %>
   <%= javascript_include_tag "application", type: "module" %>
 </head>
-<body>
+<%# DÉBUT DE LA MODIFICATION : data-controller="cart" déplacé ici %>
+<body data-controller="cart">
+<%# FIN DE LA MODIFICATION %>
   <header class="header" data-controller="header-scroll">
     <nav data-controller="vitrine1" class="nav">
         <div class="logo">
           <%= image_tag "bisso fragrance new logo transparent no letters.png", alt: "Bisso Fragrance", class: "logo-icon" %>
           <span class="logo-text">Bisso Fragrance</span>
         </div>
-
-        <span class="logo-icon" ></span>
-      </div>
       <ul data-vitrine1-target="menu" class="menu">
         <li><a href="#" class="nav-link active">Accueil</a></li>
         <li><a href="#" class="nav-link">Parfums</a></li>
@@ -28,20 +27,22 @@
         <li><a href="#" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="search-btn" aria-label="Rechercher">
+        <button class="search-btn" aria-label="Rechercher" data-controller="search" data-action="click->search#toggle">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="11" cy="11" r="8"/>
             <path d="m21 21-4.35-4.35"/>
           </svg>
         </button>
-        <button class="cart-btn" aria-label="Panier">
+        <%# DÉBUT DE LA MODIFICATION : data-controller="cart" retiré d'ici %>
+        <button class="cart-btn" aria-label="Panier" data-action="click->cart#toggle" data-cart-target="cartButton">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
             <line x1="3" y1="6" x2="21" y2="6"/>
             <path d="m16 10a4 4 0 0 1-8 0"/>
           </svg>
-          <span class="cart-count">0</span>
+          <span class="cart-count" data-cart-target="cartCount">0</span>
         </button>
+        <%# FIN DE LA MODIFICATION %>
       </div>
       <button id="menu-toggle" data-action="click->vitrine1#toggleMenu" aria-label="Ouvrir menu">
         <span></span>
@@ -50,19 +51,33 @@
       </button>
     </nav>
   </header>
-  
+
+  <!-- Superposition de recherche -->
+  <div class="search-overlay" data-search-target="overlay">
+    <div class="search-overlay-content">
+      <button class="close-search-button" data-action="click->search#close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <input type="text" placeholder="Rechercher un parfum ou une marque..." class="search-input" data-search-target="input" data-action="input->search#search">
+      <div class="search-results" data-search-target="results">
+        <div data-search-target="perfumeResults"></div>
+        <div data-search-target="brandResults"></div>
+      </div>
+    </div>
+  </div>
+
   <main>
     <%= yield %>
   </main>
-  
+
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
           <div class="footer-logo">
-             <div class="logo">
-                 <%= image_tag "bisso fragrance new logo transparent no letters.png", alt: "Bisso Fragrance", class: "logo-icon" %>
-                  <span class="logo-text">Bisso Fragrance</span>
+              <div class="logo">
+                <%= image_tag "bisso fragrance new logo transparent no letters.png", alt: "Bisso Fragrance", class: "logo-icon" %>
+                <span class="logo-text">Bisso Fragrance</span>
               </div>
             </div>
           <p>L'art de la parfumerie à portée de main. Découvrez nos décants de fragrances d'exception.</p>
@@ -94,12 +109,45 @@
             <li><a href="#">Collection Privée</a></li>
           </ul>
         </div>
-
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Bisso Fragrance. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
+
+  <!-- Structure HTML du slider du panier -->
+  <div class="cart-slider-overlay" data-cart-target="overlay" data-action="click->cart#close:self">
+    <div class="cart-slider-content">
+      <div class="cart-slider-header">
+        <h3>Votre Panier</h3>
+        <button class="cart-slider-close-btn" data-action="click->cart#close" aria-label="Fermer le panier">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="cart-slider-items" data-cart-target="cartItems">
+        <!-- Les articles du panier seront insérés ici par Stimulus -->
+        <p class="cart-slider-empty-message">Votre panier est vide.</p>
+      </div>
+      <div class="cart-slider-summary">
+        <div class="summary-line">
+          <span>Sous-total:</span>
+          <span data-cart-target="subtotalDisplay">0,00 TND</span>
+        </div>
+        <div class="summary-line">
+          <span>Frais de livraison:</span>
+          <span data-cart-target="deliveryDisplay">0,00 TND</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Total:</span>
+          <span data-cart-target="totalDisplay">0,00 TND</span>
+        </div>
+      </div>
+      <div class="cart-slider-actions">
+        <button class="cart-slider-view-cart-btn" data-action="click->cart#viewCartPage">Voir le panier</button>
+        <button class="cart-slider-order-btn" data-action="click->cart#orderCart">Commander</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
