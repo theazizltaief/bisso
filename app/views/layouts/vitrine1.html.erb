@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <%= stylesheet_link_tag "vitrine1","brands", "category_cards","gender_category_cards","vitrine_parfum_detail","cart_styles", media: "all" %>
+  <%= stylesheet_link_tag "vitrine1","brands", "category_cards","gender_category_cards","vitrine_parfum_detail","cart_styles","collection_listing_styles","all_perfumes_listing","search", media: "all" %>
   <%= javascript_importmap_tags %>
   <%= javascript_include_tag "application", type: "module" %>
 </head>
@@ -26,13 +26,7 @@
         <li><a href="#" class="nav-link">Marques</a></li>
         <li><a href="#" class="nav-link">Contact</a></li>
       </ul>
-      <div class="nav-actions">
-        <button class="search-btn" aria-label="Rechercher" data-controller="search" data-action="click->search#toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="m21 21-4.35-4.35"/>
-          </svg>
-        </button>
+
         <%# DÉBUT DE LA MODIFICATION : data-controller="cart" retiré d'ici %>
         <button class="cart-btn" aria-label="Panier" data-action="click->cart#toggle" data-cart-target="cartButton">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -43,6 +37,30 @@
           <span class="cart-count" data-cart-target="cartCount">0</span>
         </button>
         <%# FIN DE LA MODIFICATION %>
+        <div class="nav-actions" data-controller="search">
+            <button class="inline-search-btn search-btn" aria-label="Rechercher" data-action="click->search#toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </button>
+            <div class="inline-search-wrapper" data-search-target="wrapper">
+              <div class="inline-search-input-area" data-search-target="inputArea">
+                <input type="text" name="search" placeholder="Rechercher un parfum ou une marque..." class="inline-search-input" data-search-target="input" data-action="input->search#search" />
+              <button class="inline-search-close-btn" data-action="click->search#close" aria-label="Fermer recherche">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+              <!-- Le dropdown est hors de inputArea, mais dans wrapper -->
+              <div class="inline-search-results-dropdown" data-search-target="results">
+                <div data-search-target="perfumeResults"></div>
+                <div data-search-target="brandResults"></div>
+              </div>
+          </div>
+        </div>
+        
       </div>
       <button id="menu-toggle" data-action="click->vitrine1#toggleMenu" aria-label="Ouvrir menu">
         <span></span>
@@ -52,19 +70,22 @@
     </nav>
   </header>
 
-  <!-- Superposition de recherche -->
-  <div class="search-overlay" data-search-target="overlay">
-    <div class="search-overlay-content">
-      <button class="close-search-button" data-action="click->search#close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <input type="text" placeholder="Rechercher un parfum ou une marque..." class="search-input" data-search-target="input" data-action="input->search#search">
-      <div class="search-results" data-search-target="results">
-        <div data-search-target="perfumeResults"></div>
-        <div data-search-target="brandResults"></div>
-      </div>
+
+<!-- Superposition de recherche -->
+<div class="search-overlay" data-search-target="overlay">
+  <div class="search-overlay-content">
+    <button class="close-search-button" data-action="click->search#close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+    <input type="text" placeholder="Rechercher un parfum ou une marque..." class="search-input" data-search-target="input" data-action="input->search#search">
+    <div class="search-results" data-search-target="results">
+      <div data-search-target="perfumeResults"></div>
+      <div data-search-target="brandResults"></div>
     </div>
   </div>
+</div>
 
   <main>
     <%= yield %>

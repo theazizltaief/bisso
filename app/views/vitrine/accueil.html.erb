@@ -3,46 +3,48 @@
   <div class="hero-content">
     <h1 class="hero-title-animated">L'Art de la Parfumerie au cœur de la médina.</h1>
     <p>Découvrez nos décants de parfums d'exception, une sélection raffinée de fragrances designer, niche et collections privées.</p>
-    <a href="#" class="btn-primary">
-      <span>Explorer la Collection</span>
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
+      <a href="<%= vitrine_all_perfumes_path %>" class="btn-primary">
+        <span>Explorer la Collection</span>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
   </div>
   <div class="hero-decoration"></div>
 </section>
-<section class="featured-categories">
+<section class="collection-class-section">
   <div class="container">
     <h2>Nos Collections</h2>
-      <div class="categories-grid">
-        <div class="category-card designer">
-          <div class="category-icon">
-            <img src="<%= asset_path('designer.jpg') %>" alt="Designer Collection" />
-            <div class="icon-overlay"></div>
-          </div>
-            <h3>Designer</h3>
-         <p>Les grandes maisons de parfumerie : l'essence du luxe, de l'histoire et de la sophistication.</p>
-         </div>
+    <div class="collection-class-grid">
 
-        <div class="category-card niche">
-          <div class="category-icon">
-            <img src="<%= asset_path('niche.jpg') %>" alt="Niche Collection" />
-            <div class="icon-overlay"></div>
-          </div>
-          <h3>Niche</h3>
-          <p>Les créations artisanales exclusives : l'essence de l'originalité, le savoir-faire unique et la rareté.</p>
+     
+      <a href="<%= category_perfumes_path(filter_type: 'fragrance_class', filter_value: 'designer') %>" class="collection-class-card collection-card-designer">
+        <div class="collection-class-overlay"></div>
+        <div class="collection-class-content">
+          <h3 class="collection-class-title">Designer</h3>
+          <p class="collection-class-description">Les grandes maisons de parfumerie : l'essence du luxe, de l'histoire et de la sophistication.</p>
         </div>
-        
-        <div class="category-card private">
-          <div class="category-icon">
-            <img src="<%= asset_path('private collection.jpeg') %>" alt="private Collection" />
-            <div class="icon-overlay"></div>
-          </div>
-          <h3>Collection Privée</h3>
-          <p>Les fragrances rares et limitées : l'essence de l'exclusivité, la préciosité et l'unicité et de la distinction et du luxe pur.</p>
+      </a>
+
+      
+      <a href="<%= category_perfumes_path(filter_type: 'fragrance_class', filter_value: 'niche') %>" class="collection-class-card collection-card-niche">
+        <div class="collection-class-overlay"></div>
+        <div class="collection-class-content">
+          <h3 class="collection-class-title">Niche</h3>
+          <p class="collection-class-description">Les créations artisanales exclusives : l'essence de l'originalité, le savoir-faire unique et la rareté.</p>
         </div>
-      </div>
+      </a>
+
+      
+      <a href="<%= category_perfumes_path(filter_type: 'fragrance_class', filter_value: 'collection_privee') %>" class="collection-class-card collection-card-private">
+        <div class="collection-class-overlay"></div>
+        <div class="collection-class-content">
+          <h3 class="collection-class-title">Collection Privée</h3>
+          <p class="collection-class-description">Plongez dans l'univers des éditions limitées et des créations exclusives.</p>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
@@ -106,7 +108,7 @@
     <div class="gender-category-cards-grid">
 
       <!-- Carte Homme -->
-      <a href="<%= category_perfumes_path(category: 'homme') %>" class="gender-category-card gender-category-card-homme">
+      <a href="<%= category_perfumes_path(filter_type: 'category', filter_value: 'homme') %>" class="gender-category-card gender-category-card-homme">
         <div class="gender-category-card-overlay"></div>
         <div class="gender-category-card-content">
           <h3 class="gender-category-card-title">Homme</h3>
@@ -115,7 +117,7 @@
       </a>
 
       <!-- Carte Femme -->
-      <a href="<%= category_perfumes_path(category: 'femme') %>" class="gender-category-card gender-category-card-femme">
+      <a href="<%= category_perfumes_path(filter_type: 'category', filter_value: 'femme') %>" class="gender-category-card gender-category-card-femme">
         <div class="gender-category-card-overlay"></div>
         <div class="gender-category-card-content">
           <h3 class="gender-category-card-title">Femme</h3>
@@ -124,7 +126,7 @@
       </a>
 
       <!-- Carte Unisexe -->
-      <a href="<%= category_perfumes_path(category: 'unisexe') %>" class="gender-category-card gender-category-card-unisexe">
+      <a href="<%= category_perfumes_path(filter_type: 'category', filter_value: 'unisexe') %>" class="gender-category-card gender-category-card-unisexe">
         <div class="gender-category-card-overlay"></div>
         <div class="gender-category-card-content">
           <h3 class="gender-category-card-title">Unisexe</h3>
