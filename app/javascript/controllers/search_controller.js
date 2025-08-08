@@ -87,24 +87,25 @@ export default class extends Controller {
       perfumeHtml = '<p class="inline-search-no-results-message">Aucun parfum trouvé.</p>';
     }
 
-    if (data.brands && data.brands.length > 0) {
-      brandHtml += '<h3>Marques</h3><div class="inline-search-results-grid">';
-      brandHtml += data.brands.map(brand => `
-        <a href="/vitrine/brands/${brand.id}" class="inline-search-result-item">
-          <img src="${brand.image_url || '/placeholder.svg?height=50&width=50&text=M'}" alt="${brand.name} Logo" class="inline-search-result-image">
-          <div class="inline-search-result-info">
-            <h4>${brand.name}</h4>
-            <p>${this.truncateText(brand.description, 50)}</p>
-          </div>
-        </a>
-      `).join('');
-      brandHtml += '</div>';
-    } else {
-      brandHtml = '<p class="inline-search-no-results-message">Aucune marque trouvée.</p>';
-    }
+ if (data.brands && data.brands.length > 0) {
+  brandHtml += '<h3>Marques</h3><div class="inline-search-results-grid">';
+  brandHtml += data.brands.map(brand => `
+    <a href="/vitrine/brands/${brand.id}" class="inline-search-result-item">
+      <img src="${brand.image_url || '/placeholder.svg?height=50&width=50&text=M'}" alt="${brand.name} Logo" class="inline-search-result-image">
+      <div class="inline-search-result-info">
+        <h4>${brand.name}</h4>
+        ${brand.description ? `<p>${this.truncateText(brand.description, 50)}</p>` : ""}
+      </div>
+    </a>
+  `).join('');
+  brandHtml += '</div>';
+} else {
+  brandHtml = '<p class="inline-search-no-results-message">Aucune marque trouvée.</p>';
+}
 
-    this.perfumeResultsTarget.innerHTML = perfumeHtml;
-    this.brandResultsTarget.innerHTML = brandHtml;
+this.perfumeResultsTarget.innerHTML = perfumeHtml;
+this.brandResultsTarget.innerHTML = brandHtml;
+
 
     if (this.inputTarget.value.length > 0) {
       this.resultsTarget.classList.add('is-open');
