@@ -7,13 +7,24 @@ class VitrineController < ApplicationController
     # Par défaut, accueil
   end
 
+  def contact
+    # Action pour la page de contact
+    # Vous pouvez ajouter ici toute logique nécessaire
+  end
+
+
+
   # Nouvelle action pour afficher les détails d'une marque dans la vitrine
   def show_brand
     @brand_id = params[:id]
     # Aucune logique de récupération de données ici.
     # Le contrôleur Stimulus 'brand_perfumes' s'en chargera côté client.
   end
-
+  def all_brands
+    @brands = Brand.all
+    # Vous pouvez ajouter des filtres ou tri si nécessaire
+    # @brands = Brand.where(active: true).order(:name)
+  end
   def category_perfumes
     # Cette action ne fait que rendre la vue.
     # La logique de récupération et de filtrage des parfums sera gérée côté client par Stimulus.
