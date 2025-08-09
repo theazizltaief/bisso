@@ -4,11 +4,12 @@
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1px; /* Restauré à 20px pour un espacement cohérent */
-  position: relative; /* important pour dropdown absolute */
-  overflow: visible; /* permet au dropdown de dépasser */
+  gap: 8px; /* Réduit pour rapprocher les icônes */
+  position: relative;
+  overflow: visible;
   z-index: 1100;
-  justify-content: flex-end; /* Assure que les éléments restent à droite */
+  justify-content: flex-end;
+  height: 44px; /* Hauteur fixe pour éviter l'expansion */
 }
 
 /* Conteneur principal de la recherche inline (wrapper) */
@@ -18,6 +19,7 @@
   align-items: center;
   justify-content: flex-end;
   min-width: 36px;
+  height: 44px; /* Hauteur fixe */
 }
 
 /* Bouton de l'icône de recherche */
@@ -25,18 +27,20 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  margin-left: 9px; /* Décalage vers la droite */
-  margin-right: 3px;
+  padding: 8px; /* Padding uniforme */
+  margin-left: 5px; /* Décalage vers la droite pour rapprocher du panier */
+  margin-right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-color, #222);
   transition: color 0.3s ease;
   flex-shrink: 0;
-  z-index: 1200; /* au-dessus de l'input quand fermé */
-  opacity: 1; /* Forcer la visibilité en toutes circonstances */
-  visibility: visible; /* Assurer que le bouton est toujours visible */
+  z-index: 1200;
+  opacity: 1;
+  visibility: visible;
+  width: 44px; /* Largeur fixe */
+  height: 44px; /* Hauteur fixe */
 }
 
 .inline-search-btn:hover {
@@ -46,18 +50,19 @@
 .inline-search-btn svg {
   width: 24px;
   height: 24px;
-  stroke: #fff; /* Couleur de l'icône */
+  stroke: #fff;
+  flex-shrink: 0; /* Empêche la réduction */
 }
 
 /* Zone de l'input de recherche (s'ouvre vers la gauche) */
 .inline-search-input-area {
   position: absolute;
-  right: calc(100% + 8px); /* place la zone à gauche de l'icône */
+  right: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
   width: 0;
   overflow: hidden;
-  transition: width 0.28s cubic-bezier(.2,.8,.2,1), opacity 0.2s ease;
+  transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
   opacity: 0;
   display: flex;
   align-items: center;
@@ -74,7 +79,7 @@
 
 /* when open on desktop */
 .inline-search-wrapper.is-open .inline-search-input-area {
-  width: 250px; /* Réduit de 300px à 250px pour une taille plus petite */
+  width: 250px;
   opacity: 1;
   padding-left: 40px;
 }
@@ -90,7 +95,7 @@
   background-color: #fff;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  min-width: 120px; /* Réduit légèrement pour correspondre à la nouvelle taille */
+  min-width: 120px;
 }
 
 .inline-search-input::placeholder {
@@ -114,6 +119,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
 }
 
 .inline-search-close-btn:hover {
@@ -123,16 +129,16 @@
 .inline-search-close-btn svg {
   width: 20px;
   height: 20px;
-  stroke: #000; /* visible noir */
+  stroke: #000;
   display: block;
 }
 
 /* Dropdown des résultats de recherche */
 .inline-search-results-dropdown {
   position: absolute;
-  top: calc(100% + 12px); /* Maintenu à 12px pour descendre le dropdown */
-  right: calc(100% + 8px); /* aligné avec l'input area (s'ouvre vers la gauche) */
-  width: 250px; /* Réduit pour correspondre à la nouvelle taille de l'input */
+  top: calc(100% + 12px);
+  right: calc(100% + 8px);
+  width: 250px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -199,7 +205,7 @@
   width: 48px;
   height: 48px;
   border-radius: 6px;
-  object-fit: cover; /* conserve le ratio, crop si besoin mais pas étirer */
+  object-fit: cover;
   flex-shrink: 0;
   display: block;
 }
@@ -220,70 +226,112 @@
 }
 
 /* messages */
-.inline-search-error-message, .inline-search-no-results-message {
+.inline-search-error-message,
+.inline-search-no-results-message {
   text-align: center;
   color: var(--text-color-light, #6b6f73);
   font-size: 0.95rem;
   padding: 10px;
 }
 
+/* Styles pour éviter que la navbar couvre le contenu - SANS forcer la couleur */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  /* Suppression du background-color forcé pour garder la couleur originale */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  height: 70px; /* Hauteur fixe pour la navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Espacement pour le contenu principal */
+main {
+  margin-top: 70px; /* Même hauteur que la navbar */
+  padding-top: 0; /* Suppression complète de l'espacement */
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
   .inline-search-wrapper.is-open .inline-search-input-area {
-    width: 220px; /* Réduit de 260px à 220px */
+    width: 220px;
   }
+
   .inline-search-results-dropdown {
-    width: 220px; /* Réduit pour correspondre */
+    width: 220px;
     right: calc(100% + 8px);
-    top: calc(100% + 12px); /* Maintenu à 12px pour descendre le dropdown */
+    top: calc(100% + 12px);
   }
 }
 
 @media (max-width: 768px) {
-  .nav-actions {
-    gap: 20px; /* Maintenu à 20px pour garder l'espacement cohérent */
-    justify-content: flex-end; /* Assure que les icônes restent à droite */
+  .nav {
+    height: 60px;
+    padding: 0 15px;
   }
 
-  /* On mobile: dropdown and input use viewport width and stay adjacent to cart */
-  .inline-search-input-area {
-    right: calc(100% + 6px);
-    top: 50%;
-    transform: translateY(-50%);
+  main {
+    margin-top: 60px;
+    padding-top: 0; /* Suppression complète */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    height: 55px;
+    padding: 0 10px;
   }
 
-  .inline-search-wrapper.is-open .inline-search-input-area {
-    width: 65vw; /* Réduit de 75vw à 65vw */
-    right: calc(100% + 6px);
+  main {
+    margin-top: 55px;
+    padding-top: 0; /* Suppression complète */
   }
+}
 
-  .inline-search-results-dropdown {
-    width: 65vw; /* Réduit pour correspondre */
-    right: calc(100% + 6px);
-    top: calc(100% + 12px); /* Maintenu à 12px pour descendre le dropdown */
-  }
+/* Style pour le bouton du panier pour maintenir la cohérence */
+.cart-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color, #222);
+  transition: color 0.3s ease;
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
 
-  .inline-search-result-image {
-    width: 40px;
-    height: 40px;
-  }
+.cart-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+}
 
-  .inline-search-input {
-    min-width: 100px; /* Réduit pour correspondre à la nouvelle taille */
-  }
-
-  .inline-search-btn {
-    margin-left: 8px; /* Maintenu à 8px pour garder la position près du panier */
-    margin-right: 3px;
-  }
-
-  .inline-search-btn svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .inline-search-close-btn svg {
-    width: 18px;
-    height: 18px;
-  }
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--gold-accent, #d4af37);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
